@@ -25,7 +25,7 @@ function Home({ allPostsData }) {
             <section>
                 {
                     allPostsData.length === 0 &&
-                    <p className="text-center mt-4">Coming soon!</p>
+                    <h2 className="subtitle text-center mt-4">Coming soon!</h2>
                 }
                 {allPostsData.map(({ id, date, title }) => (
                     <Link key={id} href="/posts/[id]" as={`/posts/${id}`}>
