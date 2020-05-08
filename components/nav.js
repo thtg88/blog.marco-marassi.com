@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 const links = [
+    { href: 'https://github.com/thtg88/blog.marco-marassi.com', label: 'Source' },
     { href: 'https://github.com/thtg88', label: 'GitHub' },
     { href: 'https://www.marco-marassi.com', label: 'Website' },
 ];
