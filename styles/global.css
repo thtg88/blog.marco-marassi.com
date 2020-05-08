@@ -1,9 +1,6 @@
 @tailwind base;
 @tailwind components;
 
-body {
-}
-
 .btn-blue {
     @apply bg-black text-white font-bold py-2 px-4 rounded;
 }
@@ -22,6 +19,23 @@ body {
 
 .subtitle {
     @apply text-3xl text-center font-bold leading-tight text-gray-700;
+}
+
+.post__markdown-content a {
+    @apply underline;
+}
+
+.post__markdown-content blockquote {
+    @apply border-l-2 pl-4;
+}
+
+.post__markdown-content p {
+    @apply my-3;
+}
+
+.post__markdown-content pre {
+    @apply my-4 overflow-auto bg-gray-200 shadow;
+    word-wrap: normal;
 }
 
 @tailwind utilities;
