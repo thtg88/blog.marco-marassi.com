@@ -15,15 +15,17 @@ function Nav() {
                         <a className="underline">Home</a>
                     </Link>
                 </li>
-                <ul className="flex justify-between items-center space-x-4">
-                    {links.map(({ href, label }) => (
-                        <li key={`${href}${label}`}>
-                            <a href={href} className="btn-blue no-underline">
-                                {label}
+                <li>
+                    <ul className="flex justify-between items-center space-x-4">
+                        {links.map(({ href, label }) => (
+                            <li key={`${href}`}>
+                            <a href={href} className="btn-black no-underline">
+                            {label}
                             </a>
-                        </li>
-                    ))}
-                </ul>
+                            </li>
+                        ))}
+                    </ul>
+                </li>
             </ul>
         </nav>
     );
