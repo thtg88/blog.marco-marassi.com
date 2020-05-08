@@ -32,7 +32,7 @@ function Layout({ children, home }) {
                                 <img
                                     src="/images/profile.png"
                                     alt={name}
-                                    className="mx-auto w-1/6"
+                                    className="mx-auto w-1/6 my-4"
                                 />
                             </div>
                             <h1 className="title">{siteTitle}</h1>
