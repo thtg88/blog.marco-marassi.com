@@ -38,6 +38,7 @@ function Post({ postData }) {
                         <Date dateString={postData.date} />
                     </div>
                     <div
+                        className="post__markdown-content"
                         dangerouslySetInnerHTML={{
                             __html: postData.contentHtml
                         }}
