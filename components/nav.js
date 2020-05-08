@@ -8,10 +8,10 @@ const links = [
 function Nav() {
     return (
         <nav>
-            <ul className="flex justify-between items-center sm:p-8 p-4">
+            <ul className="flex justify-between items-center sm:p-8 py-6 px-5">
                 <li>
                     <Link href="/">
-                        <a className="underline">Home</a>
+                        <a className="underline pl-2">Home</a>
                     </Link>
                 </li>
                 <li>
