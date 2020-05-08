@@ -30,7 +30,7 @@ function Home({ allPostsData }) {
                 {allPostsData.map(({ id, date, title }) => (
                     <Link key={id} href="/posts/[id]" as={`/posts/${id}`}>
                         <a>
-                            <div className="card mt-4 mx-auto sm:w-1/2 w-5/6">
+                            <div className="card mt-6 mx-auto sm:w-1/2 w-5/6">
                                 <strong>{title}</strong>
                                 <br />
                                 <Date dateString={date} />

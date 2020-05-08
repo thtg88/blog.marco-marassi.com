@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Nav from './nav';
 
 const name = 'Marco Marassi';
 export const siteTitle = 'Blog - Marco Marassi';
@@ -23,6 +24,7 @@ function Layout({ children, home }) {
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <div>
+                <Nav />
                 <header className="header">
                     {home ? (
                         <>
@@ -30,7 +32,7 @@ function Layout({ children, home }) {
                                 <img
                                     src="/images/profile.png"
                                     alt={name}
-                                    className="mx-auto w-1/6"
+                                    className="mx-auto w-1/6 my-4"
                                 />
                             </div>
                             <h1 className="title">{siteTitle}</h1>
@@ -51,9 +53,9 @@ function Layout({ children, home }) {
                 <main>{children}</main>
                 {!home && (
                     <div className="my-4 mx-auto xl:w-1/2 w-5/6 pl-2">
-                        <Link href="/">
-                            <a className="text-blue-500">&larr; Back to home</a>
-                        </Link>
+                        <p className="text-gray-500">
+                            &copy; {(new Date()).getFullYear()} Marco Marassi
+                        </p>
                     </div>
                 )}
             </div>
