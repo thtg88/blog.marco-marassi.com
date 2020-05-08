@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Nav from './nav';
 
 const name = 'Marco Marassi';
 export const siteTitle = 'Blog - Marco Marassi';
@@ -23,6 +24,7 @@ function Layout({ children, home }) {
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <div>
+                <Nav />
                 <header className="header">
                     {home ? (
                         <>
