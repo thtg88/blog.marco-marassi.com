@@ -1,5 +1,4 @@
 import Layout from '../../components/layout';
-import Head from 'next/head';
 import Date from '../../components/date';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 
@@ -26,10 +25,7 @@ export async function getStaticProps({ params }) {
 
 function Post({ postData }) {
     return (
-        <Layout>
-            <Head>
-                <title>{postData.title}</title>
-            </Head>
+        <Layout title={postData.title}>
             <article>
                 <div className="card mt-4 mx-auto xl:w-1/2 w-5/6">
                     <h1 className="title">{postData.title}</h1>

@@ -1,8 +1,7 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../components/layout';
-import { getSortedPostsData } from '../lib/posts';
+import Layout from '../components/layout';
 import Date from '../components/date';
+import { getSortedPostsData } from '../lib/posts';
 
 export async function getStaticProps() {
     // // Instead of the file system,
@@ -21,7 +20,6 @@ export async function getStaticProps() {
 function Home({ allPostsData }) {
     return (
         <Layout home>
-            <Head><title>{siteTitle}</title></Head>
             <section>
                 {
                     allPostsData.length === 0 &&
