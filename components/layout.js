@@ -53,9 +53,9 @@ function Layout({ children, home }) {
                 <main>{children}</main>
                 {!home && (
                     <div className="my-4 mx-auto xl:w-1/2 w-5/6 pl-2">
-                        <Link href="/">
-                            <a className="text-blue-500">&larr; Back to home</a>
-                        </Link>
+                        <p className="text-gray-500">
+                            &copy; {(new Date()).getFullYear()} Marco Marassi
+                        </p>
                     </div>
                 )}
             </div>
