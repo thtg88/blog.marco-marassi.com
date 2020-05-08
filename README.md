@@ -20,7 +20,27 @@ $ cd my-project
 
 ## Basic usage
 
-**Coming soon!**
+``` bash
+# dev server with hot module replacement at http://localhost:3000
+$ npm run dev
+```
+
+Navigate to [http://localhost:3000](http://localhost:3000). The app will automatically reload if you change any of the source files.
+
+## Build
+
+Run `build` to build the project. The build artifacts will be stored in the `.next/` directory.
+
+```bash
+# build for production with minification
+$ npm run build
+```
+
+Run `export` to build the project The artifacts will be stored in the `out/` directory.
+
+```bash
+npm run export
+```
 
 ## Versioning
 
