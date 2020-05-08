@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Nav from './nav';
 
 const name = 'Marco Marassi';
-export const siteTitle = 'Blog - Marco Marassi';
+export const siteTitle = 'Marco Marassi - Blog';
 
 function Layout({ children, home, title }) {
     return (
