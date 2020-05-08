@@ -5,8 +5,6 @@ You can find the app in action [here](https://blog.marco-marassi.com).
 
 * [Installation](#installation)
 * [Basic Usage](#basic-usage)
-* [Build](#build)
-* [Technologies Used](#technologies-used)
 * [Versioning](#versioning)
 * [License](#license)
 
