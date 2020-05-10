@@ -1,5 +1,7 @@
 {
-    "name": "App",
+    "short_name": "Marco Marassi - Blog",
+    "name": "Marco Marassi - Personal Blog",
+    "short_name": "MMarassiBlog",
     "icons": [
         {
             "src": "\/favicons/android-icon-36x36.png",
@@ -37,5 +39,9 @@
             "type": "image\/png",
             "density": "4.0"
         }
-    ]
+    ],
+    "start_url": "https://blog.marco-marassi.com",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
 }
