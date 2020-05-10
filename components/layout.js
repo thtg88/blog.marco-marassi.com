@@ -9,7 +9,7 @@ function Layout({ children, home, title }) {
     return (
         <>
             <Head>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicons/favicon.ico" />
                 <meta
                     name="description"
                     content={home ? 'Marco Marassi - Personal Blog' : title}
