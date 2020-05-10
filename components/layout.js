@@ -15,12 +15,7 @@ function Layout({ children, home, title }) {
                     content={home ? 'Marco Marassi - Personal Blog' : title}
                 />
                 <meta name="title" content={home ? siteTitle : title} />
-                <meta
-                    property="og:image"
-                    content={`https://og-image.now.sh/${encodeURI(
-                        siteTitle
-                    )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-                />
+                <meta property="og:image" content="/images/profile.png" />
                 <meta name="og:title" content={home ? siteTitle : title} />
                 <meta name="twitter:card" content="summary_large_image" />
                 <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png" />
