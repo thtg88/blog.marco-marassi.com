@@ -38,4 +38,8 @@
     word-wrap: normal;
 }
 
+.post__markdown-content p code {
+    @apply bg-gray-200 shadow;
+}
+
 @tailwind utilities;
