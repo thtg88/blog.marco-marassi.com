@@ -11,6 +11,10 @@ function Layout({ children, home, title }) {
             <Head>
                 <link rel="icon" href="/favicons/favicon.ico" />
                 <meta
+                    name="google-site-verification"
+                    content="d7oFhlVR10ggoJbGqVJZfu9YnpT30s2fxH_z1yLKuWw"
+                />
+                <meta
                     name="description"
                     content={home ? 'Marco Marassi - Personal Blog' : title}
                 />
