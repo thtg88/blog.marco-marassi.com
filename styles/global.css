@@ -33,13 +33,32 @@
     @apply my-3;
 }
 
+.post__markdown-content h3 {
+    @apply text-2xl font-bold leading-tight text-gray-900 mt-5 mb-3;
+}
+
+.post__markdown-content ol {
+    list-style: decimal;
+}
+
+.post__markdown-content ul {
+    list-style: circle;
+}
+
+.post__markdown-content ul li,
+.post__markdown-content ol li {
+    @apply mt-4 ml-5;
+}
+
 .post__markdown-content pre {
-    @apply my-4 overflow-auto bg-gray-200 shadow;
+    @apply my-4 overflow-auto bg-gray-200 shadow p-2;
     word-wrap: normal;
 }
 
+.post__markdown-content li code,
 .post__markdown-content p code {
     @apply bg-gray-200 shadow;
+    word-break: break-all;
 }
 
 @tailwind utilities;
