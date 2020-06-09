@@ -169,10 +169,10 @@ You will be prompted to insert the above user's access key ID, secret key ID, re
 5. Now it's time to finally move to our project! Start by downloading a few packages:
 
 ```
-composer require aws/aws-sdk-php bref/bref christoph-kluge/bref-sqs-laravel
+composer require aws/aws-sdk-php bref/bref bref/laravel-bridge
 ```
 
-What is going on here? We are downloading the PHP SDK for AWS to be able to put stuff on the SQS queue, Bref for our Lambda Serverless bindings, and [Bref SQS Laravel](https://github.com/christoph-kluge/bref-sqs-laravel) to have a worker run on Lambda.
+What is going on here? We are downloading the PHP SDK for AWS to be able to put stuff on the SQS queue, Bref for our Lambda Serverless PHP bindings, and [Bref Laravel Bridge](https://github.com/brefphp/laravel-bridge) to have a worker run on Lambda.
 
 6. Create a `serverless.yml` in your Laravel project's root folder, and copy the following content in it:
 
@@ -191,7 +191,15 @@ provider:
         # We cannot store sessions to disk: if you don't need sessions (e.g. API) then use `array`
         # If you write a website, use `cookie` or store sessions in database.
         SESSION_DRIVER: array
+        SQS_QUEUE:
+            Ref: AlertQueue
         VIEW_COMPILED_PATH: /tmp/storage/framework/views
+    iamRoleStatements:
+        # Allows our code to interact with SQS
+        -   Effect: Allow
+            Action: [sqs:SendMessage, sqs:DeleteMessage]
+            Resource:
+                Fn::GetAtt: [ AlertQueue, Arn ]
 
 plugins:
     - ./vendor/bref/bref
@@ -219,16 +227,37 @@ functions:
         layers:
             - ${bref:layer.php-74} # PHP
             - ${bref:layer.console} # The "console" layer
-    queue:
-        handler: artisan-lambda
-        environment:
-            ARTISAN_COMMAND: 'sqs:work sqs --tries=3 --sleep=1 --delay=1'
+    worker:
+        handler: worker.php
         layers:
             - ${bref:layer.php-74}
         events:
-            - sqs:
-                  arn: arn:aws:sqs:region:XXXXXX:default-queue # REPLACE THIS
-                  batchSize: 10
+            # Declares that our worker is triggered by jobs in SQS
+            -   sqs:
+                    arn:
+                        Fn::GetAtt: [ AlertQueue, Arn ]
+                    # If you create the queue manually, the line above could be:
+                    # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
+                    # Only 1 item at a time to simplify error handling
+                    batchSize: 1
+
+resources:
+    Resources:
+        # Failed jobs will go into that SQS queue to be stored, until a developer looks at these errors
+        DeadLetterQueue:
+            Type: AWS::SQS::Queue
+            Properties:
+                MessageRetentionPeriod: 1209600 # maximum retention: 14 days
+        # The SQS queue
+        AlertQueue:
+            Type: AWS::SQS::Queue
+            Properties:
+                RedrivePolicy:
+                    maxReceiveCount: 3 # jobs will be retried up to 3 times
+                    # Failed jobs (after the retries) will be moved to the other queue for storage
+                    deadLetterTargetArn:
+                        Fn::GetAtt: [ DeadLetterQueue, Arn ]
+
 ```
 
 Feel free to add any additional environment variables in the `environment` section, that you need to be passed to your application, that differ from the ones in your dev `.env` file.
@@ -252,32 +281,29 @@ Also be aware that some environment variables are reserved for AWS Lambda as the
 
 See the [AWS docs](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime) for an updated list.
 
-7. Create an `artisan-lambda` file in your project's root directory and paste in the following content:
+7. Create a `worker.php` file in your project's root directory and paste in the following content:
 
 ```
-#!/opt/bin/php
 <?php declare(strict_types=1);
 
-use App\Console\Kernel;
-use Illuminate\Contracts\Console\Kernel as BaseKernel;
-use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
+use Bref\LaravelBridge\Queue\LaravelSqsHandler;
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 
-$appRoot = getenv('LAMBDA_TASK_ROOT');
-require_once $appRoot . '/vendor/autoload.php';
-require_once $appRoot . '/bootstrap/app.php';
+require __DIR__ . '/vendor/autoload.php';
+/** @var Application $app */
+$app = require __DIR__ . '/bootstrap/app.php';
 
-/** @var Kernel $kernel */
-$kernel = app(BaseKernel::class);
+$kernel = $app->make(Kernel::class);
 $kernel->bootstrap();
 
-$status = $kernel->handle(
-    $input = new StringInput(getenv('ARTISAN_COMMAND')),
-    new ConsoleOutput
-);
-
-$kernel->terminate($input, $status);
+return $app->makeWith(LaravelSqsHandler::class, [
+    'connection' => 'sqs', // this is the Laravel Queue connection
+    'queue' => getenv('SQS_QUEUE'),
+]);
 ```
+
+This will be the entry-point for our worker function.
 
 8. Make sure to edit `app/Providers/AppServiceProvider.php` so that directory is present (Laravel does not create it automatically):
 
@@ -298,7 +324,6 @@ QUEUE_CONNECTION=sqs
 AWS_SQS_ACCESS_KEY_ID=changeme
 AWS_SQS_SECRET_ACCESS_KEY=changeme
 SQS_PREFIX=https://sqs.us-east-1.amazonaws.com/your-account-id
-SQS_QUEUE=your-queue-name
 AWS_SQS_DEFAULT_REGION=your-region-name
 ```
 
@@ -331,4 +356,4 @@ Happy coding! :)
 ### Further reading
 
 - [Troubleshooting your Laravel Bref application on Lambda](https://bref.sh/docs/frameworks/laravel.html#troubleshooting)
-- [Document how to use SQS to trigger Lambda](https://github.com/brefphp/bref/issues/421)
+- [Laravel Bridge documentation](https://github.com/brefphp/laravel-bridge)
