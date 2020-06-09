@@ -141,6 +141,9 @@ Their documentation [recommends](https://www.serverless.com/framework/docs/provi
             "sns:SetTopicAttributes",
             "sns:Subscribe",
             "sns:Unsubscribe",
+            "sqs:CreateQueue",
+            "sqs:DeleteQueue",
+            "sqs:GetQueueAttributes",
             "states:CreateStateMachine",
             "states:DeleteStateMachine"
         ],
