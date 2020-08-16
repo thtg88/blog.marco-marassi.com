@@ -41,116 +41,116 @@ Their documentation [recommends](https://www.serverless.com/framework/docs/provi
 
 ```
 {
-    "Statement": [{
-        "Action": [
-            "apigateway:*",
-            "cloudformation:CancelUpdateStack",
-            "cloudformation:ContinueUpdateRollback",
-            "cloudformation:CreateChangeSet",
-            "cloudformation:CreateStack",
-            "cloudformation:CreateUploadBucket",
-            "cloudformation:DeleteStack",
-            "cloudformation:Describe*",
-            "cloudformation:EstimateTemplateCost",
-            "cloudformation:ExecuteChangeSet",
-            "cloudformation:Get*",
-            "cloudformation:List*",
-            "cloudformation:UpdateStack",
-            "cloudformation:UpdateTerminationProtection",
-            "cloudformation:ValidateTemplate",
-            "dynamodb:CreateTable",
-            "dynamodb:DeleteTable",
-            "dynamodb:DescribeTable",
-            "dynamodb:DescribeTimeToLive",
-            "dynamodb:UpdateTimeToLive",
-            "ec2:AttachInternetGateway",
-            "ec2:AuthorizeSecurityGroupIngress",
-            "ec2:CreateInternetGateway",
-            "ec2:CreateNetworkAcl",
-            "ec2:CreateNetworkAclEntry",
-            "ec2:CreateRouteTable",
-            "ec2:CreateSecurityGroup",
-            "ec2:CreateSubnet",
-            "ec2:CreateTags",
-            "ec2:CreateVpc",
-            "ec2:DeleteInternetGateway",
-            "ec2:DeleteNetworkAcl",
-            "ec2:DeleteNetworkAclEntry",
-            "ec2:DeleteRouteTable",
-            "ec2:DeleteSecurityGroup",
-            "ec2:DeleteSubnet",
-            "ec2:DeleteVpc",
-            "ec2:Describe*",
-            "ec2:DetachInternetGateway",
-            "ec2:ModifyVpcAttribute",
-            "events:DeleteRule",
-            "events:DescribeRule",
-            "events:ListRuleNamesByTarget",
-            "events:ListRules",
-            "events:ListTargetsByRule",
-            "events:PutRule",
-            "events:PutTargets",
-            "events:RemoveTargets",
-            "iam:AttachRolePolicy",
-            "iam:CreateRole",
-            "iam:DeleteRole",
-            "iam:DeleteRolePolicy",
-            "iam:DetachRolePolicy",
-            "iam:GetRole",
-            "iam:PassRole",
-            "iam:PutRolePolicy",
-            "iot:CreateTopicRule",
-            "iot:DeleteTopicRule",
-            "iot:DisableTopicRule",
-            "iot:EnableTopicRule",
-            "iot:ReplaceTopicRule",
-            "kinesis:CreateStream",
-            "kinesis:DeleteStream",
-            "kinesis:DescribeStream",
-            "lambda:*",
-            "logs:CreateLogGroup",
-            "logs:DeleteLogGroup",
-            "logs:DescribeLogGroups",
-            "logs:DescribeLogStreams",
-            "logs:FilterLogEvents",
-            "logs:GetLogEvents",
-            "logs:PutSubscriptionFilter",
-            "s3:CreateBucket",
-            "s3:DeleteBucket",
-            "s3:DeleteBucketPolicy",
-            "s3:DeleteObject",
-            "s3:DeleteObjectVersion",
-            "s3:GetObject",
-            "s3:GetObjectVersion",
-            "s3:ListAllMyBuckets",
-            "s3:ListBucket",
-            "s3:PutBucketNotification",
-            "s3:PutBucketPolicy",
-            "s3:PutBucketTagging",
-            "s3:PutBucketWebsite",
-            "s3:PutEncryptionConfiguration",
-            "s3:PutObject",
-            "sns:CreateTopic",
-            "sns:DeleteTopic",
-            "sns:GetSubscriptionAttributes",
-            "sns:GetTopicAttributes",
-            "sns:ListSubscriptions",
-            "sns:ListSubscriptionsByTopic",
-            "sns:ListTopics",
-            "sns:SetSubscriptionAttributes",
-            "sns:SetTopicAttributes",
-            "sns:Subscribe",
-            "sns:Unsubscribe",
-            "sqs:CreateQueue",
-            "sqs:DeleteQueue",
-            "sqs:GetQueueAttributes",
-            "states:CreateStateMachine",
-            "states:DeleteStateMachine"
-        ],
-        "Effect": "Allow",
-        "Resource": "*"
-    }],
-    "Version": "2012-10-17"
+  "Statement": [{
+    "Action": [
+      "apigateway:*",
+      "cloudformation:CancelUpdateStack",
+      "cloudformation:ContinueUpdateRollback",
+      "cloudformation:CreateChangeSet",
+      "cloudformation:CreateStack",
+      "cloudformation:CreateUploadBucket",
+      "cloudformation:DeleteStack",
+      "cloudformation:Describe*",
+      "cloudformation:EstimateTemplateCost",
+      "cloudformation:ExecuteChangeSet",
+      "cloudformation:Get*",
+      "cloudformation:List*",
+      "cloudformation:UpdateStack",
+      "cloudformation:UpdateTerminationProtection",
+      "cloudformation:ValidateTemplate",
+      "dynamodb:CreateTable",
+      "dynamodb:DeleteTable",
+      "dynamodb:DescribeTable",
+      "dynamodb:DescribeTimeToLive",
+      "dynamodb:UpdateTimeToLive",
+      "ec2:AttachInternetGateway",
+      "ec2:AuthorizeSecurityGroupIngress",
+      "ec2:CreateInternetGateway",
+      "ec2:CreateNetworkAcl",
+      "ec2:CreateNetworkAclEntry",
+      "ec2:CreateRouteTable",
+      "ec2:CreateSecurityGroup",
+      "ec2:CreateSubnet",
+      "ec2:CreateTags",
+      "ec2:CreateVpc",
+      "ec2:DeleteInternetGateway",
+      "ec2:DeleteNetworkAcl",
+      "ec2:DeleteNetworkAclEntry",
+      "ec2:DeleteRouteTable",
+      "ec2:DeleteSecurityGroup",
+      "ec2:DeleteSubnet",
+      "ec2:DeleteVpc",
+      "ec2:Describe*",
+      "ec2:DetachInternetGateway",
+      "ec2:ModifyVpcAttribute",
+      "events:DeleteRule",
+      "events:DescribeRule",
+      "events:ListRuleNamesByTarget",
+      "events:ListRules",
+      "events:ListTargetsByRule",
+      "events:PutRule",
+      "events:PutTargets",
+      "events:RemoveTargets",
+      "iam:AttachRolePolicy",
+      "iam:CreateRole",
+      "iam:DeleteRole",
+      "iam:DeleteRolePolicy",
+      "iam:DetachRolePolicy",
+      "iam:GetRole",
+      "iam:PassRole",
+      "iam:PutRolePolicy",
+      "iot:CreateTopicRule",
+      "iot:DeleteTopicRule",
+      "iot:DisableTopicRule",
+      "iot:EnableTopicRule",
+      "iot:ReplaceTopicRule",
+      "kinesis:CreateStream",
+      "kinesis:DeleteStream",
+      "kinesis:DescribeStream",
+      "lambda:*",
+      "logs:CreateLogGroup",
+      "logs:DeleteLogGroup",
+      "logs:DescribeLogGroups",
+      "logs:DescribeLogStreams",
+      "logs:FilterLogEvents",
+      "logs:GetLogEvents",
+      "logs:PutSubscriptionFilter",
+      "s3:CreateBucket",
+      "s3:DeleteBucket",
+      "s3:DeleteBucketPolicy",
+      "s3:DeleteObject",
+      "s3:DeleteObjectVersion",
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:ListAllMyBuckets",
+      "s3:ListBucket",
+      "s3:PutBucketNotification",
+      "s3:PutBucketPolicy",
+      "s3:PutBucketTagging",
+      "s3:PutBucketWebsite",
+      "s3:PutEncryptionConfiguration",
+      "s3:PutObject",
+      "sns:CreateTopic",
+      "sns:DeleteTopic",
+      "sns:GetSubscriptionAttributes",
+      "sns:GetTopicAttributes",
+      "sns:ListSubscriptions",
+      "sns:ListSubscriptionsByTopic",
+      "sns:ListTopics",
+      "sns:SetSubscriptionAttributes",
+      "sns:SetTopicAttributes",
+      "sns:Subscribe",
+      "sns:Unsubscribe",
+      "sqs:CreateQueue",
+      "sqs:DeleteQueue",
+      "sqs:GetQueueAttributes",
+      "states:CreateStateMachine",
+      "states:DeleteStateMachine"
+    ],
+    "Effect": "Allow",
+    "Resource": "*"
+  }],
+  "Version": "2012-10-17"
 }
 ```
 
@@ -180,83 +180,83 @@ What is going on here? We are downloading the PHP SDK for AWS to be able to put 
 service: your-app-name
 
 provider:
-    name: aws
-    region: us-west-1 # Make sure this matches the region of your SQS queue and the region you set when you did `aws configure`
-    runtime: provided
-    environment:
-        APP_DEBUG: false
-        APP_ENVIRONMENT: production
-        # Logging to stderr allows the logs to end up in Cloudwatch
-        LOG_CHANNEL: stderr
-        # We cannot store sessions to disk: if you don't need sessions (e.g. API) then use `array`
-        # If you write a website, use `cookie` or store sessions in database.
-        SESSION_DRIVER: array
-        SQS_QUEUE:
-            Ref: AlertQueue
-        VIEW_COMPILED_PATH: /tmp/storage/framework/views
-    iamRoleStatements:
-        # Allows our code to interact with SQS
-        -   Effect: Allow
-            Action: [sqs:SendMessage, sqs:DeleteMessage]
-            Resource:
-                Fn::GetAtt: [ AlertQueue, Arn ]
+  name: aws
+  region: us-west-1 # Make sure this matches the region of your SQS queue and the region you set when you did `aws configure`
+  runtime: provided
+  environment:
+    APP_DEBUG: false
+    APP_ENVIRONMENT: production
+    # Logging to stderr allows the logs to end up in Cloudwatch
+    LOG_CHANNEL: stderr
+    # We cannot store sessions to disk: if you don't need sessions (e.g. API) then use `array`
+    # If you write a website, use `cookie` or store sessions in database.
+    SESSION_DRIVER: array
+    SQS_QUEUE:
+      Ref: AlertQueue
+    VIEW_COMPILED_PATH: /tmp/storage/framework/views
+  iamRoleStatements:
+    # Allows our code to interact with SQS
+    -   Effect: Allow
+      Action: [sqs:SendMessage, sqs:DeleteMessage]
+      Resource:
+        Fn::GetAtt: [ AlertQueue, Arn ]
 
 plugins:
-    - ./vendor/bref/bref
+  - ./vendor/bref/bref
 
 package:
   exclude:
-    - node_modules/**
-    - public/storage
-    - resources/assets/**
-    - storage/**
-    - tests/**
+  - node_modules/**
+  - public/storage
+  - resources/assets/**
+  - storage/**
+  - tests/**
 
 functions:
-    website:
-        handler: public/index.php
-        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
-        layers:
-            - ${bref:layer.php-74-fpm}
-        events:
-            -   http: 'ANY /'
-            -   http: 'ANY /{proxy+}'
-    artisan:
-        handler: artisan
-        timeout: 120 # in seconds
-        layers:
-            - ${bref:layer.php-74} # PHP
-            - ${bref:layer.console} # The "console" layer
-    worker:
-        handler: worker.php
-        layers:
-            - ${bref:layer.php-74}
-        events:
-            # Declares that our worker is triggered by jobs in SQS
-            -   sqs:
-                    arn:
-                        Fn::GetAtt: [ AlertQueue, Arn ]
-                    # If you create the queue manually, the line above could be:
-                    # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
-                    # Only 1 item at a time to simplify error handling
-                    batchSize: 1
+  website:
+    handler: public/index.php
+    timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+    layers:
+      - ${bref:layer.php-74-fpm}
+    events:
+      -   http: 'ANY /'
+      -   http: 'ANY /{proxy+}'
+  artisan:
+    handler: artisan
+    timeout: 120 # in seconds
+    layers:
+      - ${bref:layer.php-74} # PHP
+      - ${bref:layer.console} # The "console" layer
+  worker:
+    handler: worker.php
+    layers:
+      - ${bref:layer.php-74}
+    events:
+      # Declares that our worker is triggered by jobs in SQS
+      -   sqs:
+          arn:
+            Fn::GetAtt: [ AlertQueue, Arn ]
+          # If you create the queue manually, the line above could be:
+          # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
+          # Only 1 item at a time to simplify error handling
+          batchSize: 1
 
 resources:
-    Resources:
-        # Failed jobs will go into that SQS queue to be stored, until a developer looks at these errors
-        DeadLetterQueue:
-            Type: AWS::SQS::Queue
-            Properties:
-                MessageRetentionPeriod: 1209600 # maximum retention: 14 days
-        # The SQS queue
-        AlertQueue:
-            Type: AWS::SQS::Queue
-            Properties:
-                RedrivePolicy:
-                    maxReceiveCount: 3 # jobs will be retried up to 3 times
-                    # Failed jobs (after the retries) will be moved to the other queue for storage
-                    deadLetterTargetArn:
-                        Fn::GetAtt: [ DeadLetterQueue, Arn ]
+  Resources:
+    # Failed jobs will go into that SQS queue to be stored, until a developer looks at these errors
+    DeadLetterQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        MessageRetentionPeriod: 1209600 # maximum retention: 14 days
+    # The SQS queue
+    AlertQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        RedrivePolicy:
+          maxReceiveCount: 3 # jobs will be retried up to 3 times
+          # Failed jobs (after the retries) will be moved to the other queue for storage
+          deadLetterTargetArn:
+            Fn::GetAtt: [ DeadLetterQueue, Arn ]
 
 ```
 
@@ -298,8 +298,8 @@ $kernel = $app->make(Kernel::class);
 $kernel->bootstrap();
 
 return $app->makeWith(LaravelSqsHandler::class, [
-    'connection' => 'sqs', // this is the Laravel Queue connection
-    'queue' => getenv('SQS_QUEUE'),
+  'connection' => 'sqs', // this is the Laravel Queue connection
+  'queue' => getenv('SQS_QUEUE'),
 ]);
 ```
 
@@ -310,10 +310,10 @@ This will be the entry-point for our worker function.
 ```
 public function boot()
 {
-    // Make sure the directory for compiled views exist
-    if (! is_dir(config('view.compiled'))) {
-        mkdir(config('view.compiled'), 0755, true);
-    }
+  // Make sure the directory for compiled views exist
+  if (! is_dir(config('view.compiled'))) {
+    mkdir(config('view.compiled'), 0755, true);
+  }
 }
 ```
 
@@ -331,13 +331,13 @@ And change your `config/queue.php` in the `sqs` driver section:
 
 ```
 'sqs' => [
-    'driver' => 'sqs',
-    'key' => env('AWS_SQS_ACCESS_KEY_ID'),
-    'secret' => env('AWS_SQS_SECRET_ACCESS_KEY'),
-    'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
-    'queue' => env('SQS_QUEUE', 'your-queue-name'),
-    'suffix' => env('SQS_SUFFIX'),
-    'region' => env('AWS_SQS_DEFAULT_REGION', 'us-east-1'),
+  'driver' => 'sqs',
+  'key' => env('AWS_SQS_ACCESS_KEY_ID'),
+  'secret' => env('AWS_SQS_SECRET_ACCESS_KEY'),
+  'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+  'queue' => env('SQS_QUEUE', 'your-queue-name'),
+  'suffix' => env('SQS_SUFFIX'),
+  'region' => env('AWS_SQS_DEFAULT_REGION', 'us-east-1'),
 ],
 ```
 
