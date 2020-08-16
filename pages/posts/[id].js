@@ -27,7 +27,7 @@ function Post({ postData }) {
     return (
         <Layout title={postData.title}>
             <article>
-                <div className="card mt-4 mx-auto xl:w-1/2 w-5/6">
+                <div className="card mt-4 mx-auto p-0 md:p-8 shadow-none md:shadow w-5/6 xl:w-2/3">
                     <h1 className="title">{postData.title}</h1>
                     <br />
                     <div className="mb-2">
