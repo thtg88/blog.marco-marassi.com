@@ -43,19 +43,19 @@ go run main.go
 You can also build the server with:
 
 ```bash
-go build -o wedding main.go
+go build -o blog.marco-marassi.com main.go
 ```
 
 Make sure the server is executable with:
 
 ```bash
-chmod +x wedding
+chmod +x blog.marco-marassi.com
 ```
 
 And execute it with:
 
 ```bash
-./wedding
+./blog.marco-marassi.com
 ```
 
 ## CSS
