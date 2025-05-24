@@ -1,53 +1,73 @@
 # Personal Blog - blog.marco-marassi.com
+
 You can find the app in action [here](https://blog.marco-marassi.com).
 
-## Table of Contents
+## Requirements
 
-* [Installation](#installation)
-* [Basic Usage](#basic-usage)
-* [Versioning](#versioning)
-* [License](#license)
+### Go v1.24
 
-## Installation
-
-``` bash
-# clone the repo
-$ git clone https://github.com/thtg88/blog.marco-marassi.com.git my-project
-
-# go into app's directory
-$ cd my-project
-```
-
-## Basic usage
-
-``` bash
-# dev server with hot module replacement at http://localhost:3000
-$ npm run dev
-```
-
-Navigate to [http://localhost:3000](http://localhost:3000). The app will automatically reload if you change any of the source files.
-
-## Build
-
-Run `build` to build the project. The build artifacts will be stored in the `.next/` directory.
+Install it using [gvm](https://github.com/moovweb/gvm) with:
 
 ```bash
-# build for production with minification
-$ npm run build
+gvm install go1.24
 ```
 
-Run `export` to build the project The artifacts will be stored in the `out/` directory.
+Use it with:
 
 ```bash
-npm run export
+gvm use go1.24
 ```
 
-## Versioning
+### NodeJS v22.14.0
 
-blog.marco-marassi.com is maintained under [the Semantic Versioning guidelines](http://semver.org/).
+An `.nvmrc` is provided. Using [nvm](https://github.com/nvm-sh/nvm) with:
 
-See the [change-log](CHANGELOG.md) of the project for changelogs for each release version.
+```bash
+nvm use
+```
 
-## License
+Install the dependencies with:
 
-Code released under [the MIT license](LICENSE).
+```bash
+npm install
+```
+
+## Server
+
+You can start the server locally with:
+
+```bash
+go run main.go
+```
+
+You can also build the server with:
+
+```bash
+go build -o wedding main.go
+```
+
+Make sure the server is executable with:
+
+```bash
+chmod +x wedding
+```
+
+And execute it with:
+
+```bash
+./wedding
+```
+
+## CSS
+
+You can run a dev server with auto-reload for the CSS styling with:
+
+```bash
+npm run dev:css
+```
+
+You can also build a minified `style.css` file with:
+
+```bash
+npm run build:css
+```
