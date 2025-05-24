@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <link rel="icon" href="/favicons/favicon.ico">
+  <meta name="google-site-verification" content="d7oFhlVR10ggoJbGqVJZfu9YnpT30s2fxH_z1yLKuWw">
+  <meta name="description" content="Laravel Passport on Heroku - OAuth Private Key Does Not Exist or Is Not Readable">
+  <meta name="title" content="Laravel Passport on Heroku - OAuth Private Key Does Not Exist or Is Not Readable">
+  <meta property="og:image" content="/images/profile.png">
+  <meta name="og:title" content="Laravel Passport on Heroku - OAuth Private Key Does Not Exist or Is Not Readable">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+  <link rel="preload" as="image" href="/images/profile.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="theme-color" content="#000000">
+  <title>Laravel Passport on Heroku - OAuth Private Key Does Not Exist or Is Not Readable</title>
+</head>
+<body>
+  <div>
+    <nav>
+      <ul class="flex justify-between items-center sm:p-8 py-6 px-5">
+        <li><a href="/" class="underline pl-2">Home</a></li>
+        <li>
+          <ul class="flex justify-between items-center sm:space-x-4 space-x-2">
+            <li><a href="https://github.com/thtg88/blog.marco-marassi.com" class="btn-black no-underline">Source</a></li>
+            <li><a href="https://www.marco-marassi.com" class="btn-black no-underline">Home</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <header class="header">
+      <a href="/">
+        <img src="/images/profile.png" alt="Marco Marassi" class="mx-auto w-1/6">
+        <h2 class="subtitle">Marco Marassi - Blog</h2>
+      </a>
+    </header>
+    <main>
+      <article>
+        <div class="card mt-4 mx-auto p-0 md:p-8 shadow-none md:shadow w-5/6 xl:w-2/3">
+          <h1 class="title">Laravel Passport on Heroku - OAuth Private Key Does Not Exist or Is Not Readable</h1><br>
+          <div class="mb-2">
+            <time datetime="2020-05-10" class="text-gray-700">May 10, 2020</time>
+          </div>
+          <div class="post__markdown-content">
+            <p>
+              Recently I was deploying a <a href="https://laravel.com/" target="_blank" rel="noopener noreferer">Laravel 7</a> REST API, to a dyno on Heroku.
+              This particular project uses <a href="https://laravel.com/docs/7.x/passport" target="_blank" rel="noopener noreferer">Passport</a> for authentication,
+              so after deploying the app, I generated the OAuth keys using the <code>php artisan passport:keys</code> command.
+              I then tried to log in, feeling confident this should be a fairly easy, and successful setup.
+              Unfortunately I hit the following error:
+            </p>
+
+            <pre><code>Key path "file:///app/storage/oauth-private.key" does not exist or is not readable</code></pre>
+
+            <p>
+              I was pretty sure the <code>passport:keys</code> command succeeded, and a quick <code>heroku run bash</code> and a <code>ls</code> in the project's <code>storage</code> folder,
+              confirmed my theory, and all environment variables (like <code>APP_URL</code>) were set correctly, and other parts of the API that didn't require authentication were working fine.
+              Why wasn't the login functionality working then?
+            </p>
+
+            <p>
+              The reason why this was not working is due to Heroku's ephemeral file system, where files generated from the application apart from the deployed files are not persisted and,
+              even if they are, they get removed within at most 24 hours, as this
+              <a href="https://help.heroku.com/K1PPS2WM/why-are-my-file-uploads-missing-deleted" target="_blank" rel="noopener noreferer">Heroku Help article</a> states:
+            </p>
+
+            <blockquote>
+              <p>
+                The Heroku filesystem is ephemeral - that means that any changes to the filesystem whilst the dyno is running only last until that dyno is shut down or restarted.
+                Each dyno boots with a clean copy of the filesystem from the most recent deploy.
+                This is similar to how many container based systems, such as Docker, operate.
+              </p>
+              <p>In addition, under normal operations dynos will restart every day in a process known as "Cycling".</p>
+              <p>These two facts mean that the filesystem on Heroku is not suitable for persistent storage of data. [...]</p>
+            </blockquote>
+
+            <p>How can you solve this issue then? Luckily Passport has the ability to specify public and private keys as environment variables.</p>
+
+            <p>
+              From your local machine run <code>php artisan vendor:publish --tag=passport-config</code>.
+              Laravel will publish the Passport config files within your <code>config</code> folder.
+              Make sure you deploy these changes to Heroku.
+            </p>
+
+            <p>
+              Next, go to your <a href="https://dashboard.heroku.com/apps" target="_blank" rel="noopener noreferer">Heroku Dashboard</a>,
+              and put your OAuth keys as config vars in the App Settings page.
+              You should be able to see what these are named from the Passport config file, these are <code>PASSPORT_PRIVATE_KEY</code> and <code>PASSPORT_PUBLIC_KEY</code>.
+            </p>
+
+            <p>Finally, try to login, you should now be able to login to your REST API using Laravel Passport on Heroku! :-)</p>
+
+            <p>
+              For more info about deploying projects that use Passport, see the
+              <a href="https://laravel.com/docs/7.x/passport#deploying-passport" target="_blank" rel="noopener noreferer">official docs.</a>
+            </p>
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer>
+      <div class="my-4 mx-auto xl:w-1/2 w-5/6 pl-2">
+        <p class="text-gray-700">&copy; 2025 Marco Marassi</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

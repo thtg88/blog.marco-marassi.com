@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <link rel="icon" href="/favicons/favicon.ico">
+  <meta name="google-site-verification" content="d7oFhlVR10ggoJbGqVJZfu9YnpT30s2fxH_z1yLKuWw">
+  <meta name="description" content={home ? 'Marco Marassi - Personal Blog' : title}>
+  <meta name="title" content="DNS Not Working After Deleting A Linode">
+  <meta property="og:image" content="/images/profile.png">
+  <meta name="og:title" content="DNS Not Working After Deleting A Linode">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+  <link rel="preload" as="image" href="/images/profile.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="theme-color" content="#000000">
+  <title>DNS Not Working After Deleting A Linode</title>
+</head>
+<body>
+  <div>
+    <nav>
+      <ul class="flex justify-between items-center sm:p-8 py-6 px-5">
+        <li><a href="/" class="underline pl-2">Home</a></li>
+        <li>
+          <ul class="flex justify-between items-center sm:space-x-4 space-x-2">
+            <li><a href="https://github.com/thtg88/blog.marco-marassi.com" class="btn-black no-underline">Source</a>
+            </li>
+            <li><a href="https://www.marco-marassi.com" class="btn-black no-underline">Home</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <header class="header">
+      <a href="/">
+        <img src="/images/profile.png" alt="Marco Marassi" class="mx-auto w-1/6">
+        <h2 class="subtitle">Marco Marassi - Blog</h2>
+      </a>
+    </header>
+    <main>
+      <article>
+        <div class="card mt-4 mx-auto p-0 md:p-8 shadow-none md:shadow w-5/6 xl:w-2/3">
+          <h1 class="title">DNS Not Working After Deleting A Linode</h1><br>
+          <div class="mb-2">
+            <time datetime="2020-05-07" class="text-gray-700">May 7, 2020</time>
+          </div>
+          <div class="post__markdown-content">
+            <p>
+              Over the past years, I always managed my web projects that required a server-side architecture with
+              <a href="https://www.linode.com/" target="_blank" rel="noreferer noopener">Linode</a>,
+              which provides a great service for a very small cost for my hobby web dev projects.
+            </p>
+
+            <p>
+              Together with providing bare-metal servers, they also provide a domain management feature, which I've been
+              using to keep things centralised and easy to manage, allowing me not to bounce between dozen of sites to just
+              put a simple project online.
+            </p>
+
+            <p>
+              In the last few days, I've found myself moving some stuff around hosting accounts between Linode and
+              <a href="https://www.heroku.com/" target="_blank" rel="noreferer noopener">Heroku</a>.
+            </p>
+
+            <p>
+              While doing so, as my running linode server instance had no applications running on it, I've decided to shut it
+              down and delete it, as it seemed like a waste of money leaving the server running for nothing.
+            </p>
+
+            <p>
+              After finishing moving my projects and having pointed the DNS back at Heroku, it was taking suspiciously long
+              for the DNS to propagate. The infamous <code>DNS_PROBE_FINISHED_NXDOMAIN</code> started to creep up at me on my
+              browser which raised my suspicion, and I started <code>dig</code>-ing around the reason of this unusual delay.
+            </p>
+
+            <p>A quick <code>dig marco-marassi.com</code> >resulted in:
+
+            <pre><code>; <<>> DiG 9.10.6 <<>> marco-marassi.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 6000
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;marco-marassi.com. IN A
+
+;; AUTHORITY SECTION:
+com. 621 IN SOA a.gtld-servers.net. nstld.verisign-grs.com. 1588937086 1800 900 604800 86400
+
+;; Query time: 395 msec
+;; SERVER: 192.168.1.1#53(192.168.1.1)
+;; WHEN: Fri May 08 12:29:56 BST 2020
+;; MSG SIZE rcvd: 119</code></pre>
+
+            <p>
+              Which means the DNS authoritative server of the <code>.com</code> domain (<code>gtld-servers.net</code>) was
+              replying to my query, instead of my Linode nameservers, or my domain registrars.
+            </p>
+
+            <p>
+              After trying <code>nslookup</code> with no avail (<code>server can't find marco-marassi.com: NXDOMAIN</code>),
+              I thought maybe it was something to do with my network or router doing some sort of weird caching, so I reverted
+              to my phone, and the good old <a href="https://mxtoolbox.com/SuperTool.aspx" target="_blank" rel="noopener noreferer">MxToolbox SuperTool</a>.
+            </p>
+
+            <p>
+              Even MxToolbox was telling me that there were no records for it.
+              I started trying some sub-domains of other projects I had running on the <code>marco-marassi.com</code> domain,
+              but again, no luck. The domain seemed to have vanished!
+            </p>
+
+            <p>
+              After a brief moment of panic, I travelled back in my mind to what I had done in the past half hour trying to
+              think what could have caused this sudden DNS outage. I had not touch my domain registrar panel nor my
+              nameservers, so there was no reason for it to just disappear from the internet.
+            </p>
+
+            <p>I had deleted my linode server! But that surely could not be it, it had nothing to do with the DNS so why would that affect it?</p>
+
+            <p>After trying pointing my DNS pretty much anywhere to get a positive outcome, I decided to turn to Linode's great support service.</p>
+
+            <p>After a some time they did confirm that:</p>
+
+            <blockquote>
+              <p>
+                In order to continue serving this domain, you would need to add a Linode to your account or move your DNS
+                records to your registrar or another location. There's a blurb about this requirement in our DNS Manager guide.
+              </p>
+            </blockquote>
+
+            <p>
+              Even with the <a href="https://www.linode.com/docs/platform/manager/dns-manager/" target="_blank" rel="noopener noreferer">DNS Manager guide</a>
+              at hand, I was struggling to find it, but finally out of the blue, the infamous note:
+            </p>
+
+            <blockquote>
+              <p>
+                To use the Linode DNS Manager to serve your domains, you must have an active Linode on your account. If you
+                remove all active Linodes, your domains will no longer be served.
+              </p>
+            </blockquote>
+
+            <p>That was it! I quickly spinned up a new linode Nanode instance, and voilà! All my projects were back online! 🤦‍</p>
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer>
+      <div class="my-4 mx-auto xl:w-1/2 w-5/6 pl-2">
+        <p class="text-gray-700">&copy; 2025 Marco Marassi</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
