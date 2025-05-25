@@ -58,8 +58,8 @@
           </div>
           <div class="post__markdown-content">
             <p>
-              Recently I was deploying a <a href="https://laravel.com/" target="_blank" rel="noopener noreferer">Laravel 7</a> REST API, to a dyno on Heroku.
-              This particular project uses <a href="https://laravel.com/docs/7.x/passport" target="_blank" rel="noopener noreferer">Passport</a> for authentication,
+              Recently I was deploying a <a href="https://laravel.com/" target="_blank" rel="noopener noreferrer">Laravel 7</a> REST API, to a dyno on Heroku.
+              This particular project uses <a href="https://laravel.com/docs/7.x/passport" target="_blank" rel="noopener noreferrer">Passport</a> for authentication,
               so after deploying the app, I generated the OAuth keys using the <code>php artisan passport:keys</code> command.
               I then tried to log in, feeling confident this should be a fairly easy, and successful setup.
               Unfortunately I hit the following error:
@@ -76,7 +76,7 @@
             <p>
               The reason why this was not working is due to Heroku's ephemeral file system, where files generated from the application apart from the deployed files are not persisted and,
               even if they are, they get removed within at most 24 hours, as this
-              <a href="https://help.heroku.com/K1PPS2WM/why-are-my-file-uploads-missing-deleted" target="_blank" rel="noopener noreferer">Heroku Help article</a> states:
+              <a href="https://help.heroku.com/K1PPS2WM/why-are-my-file-uploads-missing-deleted" target="_blank" rel="noopener noreferrer">Heroku Help article</a> states:
             </p>
 
             <blockquote>
@@ -98,7 +98,7 @@
             </p>
 
             <p>
-              Next, go to your <a href="https://dashboard.heroku.com/apps" target="_blank" rel="noopener noreferer">Heroku Dashboard</a>,
+              Next, go to your <a href="https://dashboard.heroku.com/apps" target="_blank" rel="noopener noreferrer">Heroku Dashboard</a>,
               and put your OAuth keys as config vars in the App Settings page.
               You should be able to see what these are named from the Passport config file, these are <code>PASSPORT_PRIVATE_KEY</code> and <code>PASSPORT_PUBLIC_KEY</code>.
             </p>
@@ -107,7 +107,7 @@
 
             <p>
               For more info about deploying projects that use Passport, see the
-              <a href="https://laravel.com/docs/7.x/passport#deploying-passport" target="_blank" rel="noopener noreferer">official docs.</a>
+              <a href="https://laravel.com/docs/7.x/passport#deploying-passport" target="_blank" rel="noopener noreferrer">official docs.</a>
             </p>
           </div>
         </div>

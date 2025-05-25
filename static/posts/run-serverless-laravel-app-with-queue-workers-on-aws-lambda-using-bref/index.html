@@ -61,11 +61,11 @@
 
             <p>I started messing around with AWS Lambda at my current job for a NodeJS project, and I wondered why, such a popular scripting language like PHP, which seems to be made exactly for the job of a Lambda function, is not supported natively.</p>
 
-            <p>Luckily someone has thought this before me, and setup a project called <a href="https://bref.sh/" target="_blank" rel="noopener noreferer">Bref</a>.</p>
+            <p>Luckily someone has thought this before me, and setup a project called <a href="https://bref.sh/" target="_blank" rel="noopener noreferrer">Bref</a>.</p>
 
-            <p>Bref creates PHP bindings for AWS Lambda and abstracts away the complexity of Lambda layers, while also leveraging the <a href="https://www.serverless.com/" target="_blank" rel="noopener noreferer">Serverless framework</a>, for pre-packaging the application and uploading it to your AWS account.</p>
+            <p>Bref creates PHP bindings for AWS Lambda and abstracts away the complexity of Lambda layers, while also leveraging the <a href="https://www.serverless.com/" target="_blank" rel="noopener noreferrer">Serverless framework</a>, for pre-packaging the application and uploading it to your AWS account.</p>
 
-            <p>If you are wondering how is that going to integrate with a framework like Laravel, the guys at Bref have thought about that and provided a <a href="https://bref.sh/docs/frameworks/laravel.html" target="_blank" rel="noopener noreferer">handy guide</a>.</p>
+            <p>If you are wondering how is that going to integrate with a framework like Laravel, the guys at Bref have thought about that and provided a <a href="https://bref.sh/docs/frameworks/laravel.html" target="_blank" rel="noopener noreferrer">handy guide</a>.</p>
 
             <p>Unfortunately there isn't quite yet a "native" support for running queue workers like `queue:work`, for example to send emails asynchronously from your application, as the Lambda function is a short-lived function which terminates once the execution finishes, Lambda is not really made for long-lived workers processes.</p>
 
@@ -85,7 +85,7 @@
 
             <p>
               For other operating systems, make sure to check the
-              <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html" target="_blank" rel="noopener noreferer">AWS CLI documentation</a>.
+              <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html" target="_blank" rel="noopener noreferrer">AWS CLI documentation</a>.
             </p>
 
             <ol start="3">
@@ -93,7 +93,7 @@
                 Login to your AWS account, and create a user with programmatic access, for the Serverless framework to be able to access and upload resources.
                 While you can assign an <code>AdministratorAccess</code> access policy to the user for testing purposes,
                 I'd recommend to use a stricter policy that just gives the required permissions to Serverless.
-                Their documentation <a href="https://www.serverless.com/framework/docs/providers/aws/guide/credentials#creating-aws-access-keys" target="_blank" rel="noopener noreferer">recommends</a>
+                Their documentation <a href="https://www.serverless.com/framework/docs/providers/aws/guide/credentials#creating-aws-access-keys" target="_blank" rel="noopener noreferrer">recommends</a>
                 to create a policy with the following configuration:
               </li>
             </ol>
@@ -213,7 +213,7 @@
 
             <p>
               You can find the above on a
-              <a href="https://gist.github.com/ServerlessBot/7618156b8671840a539f405dea2704c8" target="_blank" rel="noopener noreferer">GitHub Gist</a>.
+              <a href="https://gist.github.com/ServerlessBot/7618156b8671840a539f405dea2704c8" target="_blank" rel="noopener noreferrer">GitHub Gist</a>.
             </p>
 
             <p>Once the user is created with the attached policy, copy their access key ID and secret key ID.</p>
@@ -231,7 +231,7 @@
             <p>
               What is going on here? We are downloading the PHP SDK for AWS to be able to put stuff on the SQS queue,
               Bref for our Lambda Serverless PHP bindings, and
-              <a href="https://github.com/brefphp/laravel-bridge" target="_blank" rel="noopener noreferer">Bref Laravel Bridge</a>
+              <a href="https://github.com/brefphp/laravel-bridge" target="_blank" rel="noopener noreferrer">Bref Laravel Bridge</a>
               to have a worker run on Lambda.
             </p>
 
@@ -344,7 +344,7 @@ resources:
               <li><code>TZ</code>: The environment's time zone (UTC). The execution environment uses NTP to synchronize the system clock.</li>
             </ul>
 
-            <p>See the <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime" target="_blank" rel="noopener noreferer">AWS docs</a> for an updated list.</p>
+            <p>See the <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime" target="_blank" rel="noopener noreferrer">AWS docs</a> for an updated list.</p>
 
             <ol start="7"><li>Create a <code>worker.php</code> file in your project's root directory and paste in the following content:</li></ol>
 
@@ -416,8 +416,8 @@ AWS_SQS_DEFAULT_REGION=your-region-name</code></pre>
           <h3>Further reading</h3>
 
           <ul>
-            <li><a href="https://bref.sh/docs/frameworks/laravel.html#troubleshooting" target="_blank" rel="noopener noreferer">Troubleshooting your Laravel Bref application on Lambda</a></li>
-            <li><a href="https://github.com/brefphp/laravel-bridge" target="_blank" rel="noopener noreferer">Laravel Bridge documentation</li>
+            <li><a href="https://bref.sh/docs/frameworks/laravel.html#troubleshooting" target="_blank" rel="noopener noreferrer">Troubleshooting your Laravel Bref application on Lambda</a></li>
+            <li><a href="https://github.com/brefphp/laravel-bridge" target="_blank" rel="noopener noreferrer">Laravel Bridge documentation</li>
           </ul>
         </div>
       </article>
