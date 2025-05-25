@@ -59,5 +59,3 @@
   @apply bg-gray-200 shadow;
   word-break: break-all;
 }
-
-@tailwind utilities;
