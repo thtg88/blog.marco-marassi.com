@@ -10,7 +10,7 @@ import (
 	"github.com/thtg88/blog.marco-marassi.com/internal/middlewares"
 )
 
-func TestStyleCSSCacheControlMiddleware_ServeHTTP(t *testing.T) {
+func TestCacheControlMiddleware_ServeHTTP(t *testing.T) {
 	type test struct {
 		description          string
 		path                 string
@@ -20,8 +20,8 @@ func TestStyleCSSCacheControlMiddleware_ServeHTTP(t *testing.T) {
 	tests := []test{
 		{
 			description:          "request to /style.css",
-			path:                 middlewares.StyleCSSPath,
-			expectedCacheControl: middlewares.CacheControlHTTPHeaderValue,
+			path:                 "/style.css",
+			expectedCacheControl: "max-age=1209600, public",
 		},
 		{
 			description:          "any other request",
@@ -41,7 +41,7 @@ func TestStyleCSSCacheControlMiddleware_ServeHTTP(t *testing.T) {
 			handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				w.WriteHeader(http.StatusOK)
 			})
-			middleware := middlewares.NewStyleCSSCacheControlMiddleware(handler)
+			middleware := middlewares.NewCacheControlMiddleware(handler)
 
 			middleware.ServeHTTP(rr, req)
 

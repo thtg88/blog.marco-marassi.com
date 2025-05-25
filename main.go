@@ -23,7 +23,7 @@ func main() {
 	// Middleware are processed in reverse order, the last one first.
 	var handler http.Handler
 	handler = middlewares.NewGzipMiddleware(mux, deps.Logger)
-	handler = middlewares.NewStyleCSSCacheControlMiddleware(handler)
+	handler = middlewares.NewCacheControlMiddleware(handler)
 	handler = middlewares.NewIfNoneMatchMiddleware(handler, deps.ETag, deps.Logger)
 	handler = middlewares.NewAllowedPathsMiddleware(handler, deps.Logger)
 	handler = middlewares.NewTimerMiddleware(handler, deps.Logger, deps.Timer)
